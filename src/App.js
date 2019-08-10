@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import store from './store'
-import {getInputChangeAction,add,del} from './store/activeCreators'
+import {getInputChangeAction, add, del} from './store/activeCreators'
 import TodoListUI from './UI'
 import axios from 'axios'
 
@@ -14,28 +14,34 @@ class App extends Component {
         this.handleItemDelete = this.handleItemDelete.bind(this);
         store.subscribe(this.handleStoreChange)
     }
-    componentDidMount(){
-        axios.get('/user/login').then(()=>{
+
+    componentDidMount() {
+        axios.get('/user/login').then((response) => {
 
         })
     }
+
     change(e) {
-        const action = getInputChangeAction( e.target.value);
+        const action = getInputChangeAction(e.target.value);
         store.dispatch(action);
     }
+
     handleStoreChange() {
         this.setState(store.getState());
     }
-    onMyClick(){
+
+    onMyClick() {
         const action = add();
         store.dispatch(action);
     }
-    handleItemDelete(index){
+
+    handleItemDelete(index) {
         const action = del(index);
-       store.dispatch(action)
+        store.dispatch(action)
     }
- render(){
-        return  (
+
+    render() {
+        return (
             <TodoListUI
                 inputValue={this.state.inputValue}
                 change={this.change}
@@ -44,7 +50,7 @@ class App extends Component {
                 list={this.state.list}
             />
         )
- }
+    }
 }
 
 export default App;
