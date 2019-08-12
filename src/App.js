@@ -1,8 +1,9 @@
 import React, {Component} from 'react';
 import store from './store'
-import {getInputChangeAction, add, del} from './store/activeCreators'
+import {getInputChangeAction, add, del,getInitUserName} from './store/activeCreators'
 import TodoListUI from './UI'
-import axios from 'axios'
+
+
 
 class App extends Component {
     constructor(props) {
@@ -16,9 +17,12 @@ class App extends Component {
     }
 
     componentDidMount() {
-        axios.get('/user/login').then((response) => {
+        const action = getInitUserName();
+        store.dispatch(action)
+        console.log((action))
+     /* const action = getUsers()
+      store.dispatch(action)*/
 
-        })
     }
 
     change(e) {

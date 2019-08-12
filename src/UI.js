@@ -11,8 +11,8 @@ const TodoListUI = (props) => {
                 style={{width: '300px', margin: '10px'}}
                 bordered
                 dataSource={props.list}
-                renderItem={(item, index) => (
-                    <List.Item onClick={(index) => {
+                renderItem={(item,index) => (
+                    <List.Item   onClick={(index) => {
                         props.handleItemDelete(index)
                     }}>
                         <Typography.Text mark>[ITEM]</Typography.Text> {item}
